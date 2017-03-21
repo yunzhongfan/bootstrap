@@ -137,8 +137,42 @@
 <img src="..." alt="..." class="img-thumbnail">
 
 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-	
+
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Dropdown
+    <span class="caret"></span>
+  </button>
+		<ul class="dropdown-menu" aria-labelledby="dropdownMenu4">
+		  <li><a href="#">Regular link</a></li>
+		  <li class="disabled"><a href="#">Disabled link</a></li>
+		  <li><a href="#">Another link</a></li>
+		</ul>
+</div>
 	
 	</div>
+	
+	
+	<div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default">Left</button>
+  <button type="button" class="btn btn-default">Middle</button>
+  <button type="button" class="btn btn-default">Right</button>
+</div>
+
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default">1</button>
+  <button type="button" class="btn btn-default">2</button>
+
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Dropdown
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li><a href="#">Dropdown link</a></li>
+      <li><a href="#">Dropdown link</a></li>
+    </ul>
+  </div>
+</div>
 </body>
 </html>
