@@ -16,7 +16,8 @@
                      <jsp:include page="/page/sidebar.jsp"></jsp:include>
          </div>
 	     <div class="col-md-9">
-	        <jsp:include page="/page/context.jsp"></jsp:include>
+	       <jsp:include page="/page/navigation.jsp"></jsp:include> 
+	      <jsp:include page="/page/context.jsp"></jsp:include> 
 	     </div>
      
        
