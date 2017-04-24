@@ -6,18 +6,13 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
  
  
     <!-- spring 加载管理控制的包,Spring自动注入方式一，自动注入方式 ，Controller在Controller中已经管过了，就不需要要在进行注入扫描了-->
-   <context:component-scan base-package="org.cj,org.commmon">
-   <context:exclude-filter type="annotation"
-        expression="org.springframework.stereotype.Controller" />
-        
- <!--    <context:exclude-filter type="annotation"
-        expression="org.cf.bean.service.impl.AgentIdentifyServiceImpl" /> -->
-        
-   </context:component-scan>
-    <!-- 选择要加载的项目文件 -->
-    
+	<context:component-scan base-package="org.cj">
+		  <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" /> 
+	</context:component-scan>
+
+
+    <!-- 选择要加载的项目文件 -->  
  <!--    <context:property-placeholder location="classpath:/rock.properties"/> -->
- 
      <context:property-placeholder location="classpath:/jdbc.properties"/>
    <!-- 加载系统的配置文件 --> 
      <import resource ="classpath:mybatis.xml"/>
