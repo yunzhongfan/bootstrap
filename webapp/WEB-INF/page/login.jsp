@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%@ include file="/page/common/taglibs.jsp" %>
-<%@ include file="/page/common/comm.jsp"%>
+<%@ include file="./common/taglibs.jsp" %>
+<%@ include file="./common/comm.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -56,7 +56,7 @@ padding: 0 0 0 30px;
   }
 </script>
 </head>
-<body  class="container-fluid" background="/bootstrap/page/image/home.jpg">
+<body  class="container-fluid" background="/bootstrap/image/home.jpg">
 
     <div class="row"  style="height:35%;" >
                 <div style="font-size: 40px; font-family:sans-serif; font-stretch:extra-expanded;margin-left:15%;margin-top:30px;"  >
@@ -73,7 +73,7 @@ padding: 0 0 0 30px;
                 </div>
                 <div  style="height:20px;margin-top:15px; margin-left:7%;margin-right:3%;">
                     <label >密&nbsp;&nbsp;&nbsp;&nbsp;码</label> <input type="password"
-                        style="border-radius:4px;" id="exampleInputEmail2" />
+                        style="border-radius:4px;" id="exampleInputEmail2" width="30%"/>
                 </div>
                 <div  >
                         <div>
@@ -120,6 +120,6 @@ padding: 0 0 0 30px;
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="${ctx}/page/js/pages/login.js"></script>
+    <script type="text/javascript" src="${ctx}/js/pages/login.js"></script>
 </body>
 </html>

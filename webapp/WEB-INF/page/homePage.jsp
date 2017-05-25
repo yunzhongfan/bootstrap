@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ include file="/page/common/taglibs.jsp"%>
-<%@ include file="/page/common/comm.jsp"%>
+<%@ include file="./common/taglibs.jsp"%>
+<%@ include file="./common/comm.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -17,7 +17,7 @@
 			</div>
 		</div>
 		<div  class="row-fluid">
-				<div class="col-md-2 offset1" style="background-color: #f5f5f5;height:100%" >
+				<div class="col-md-4 " style="background-color: #f5f5f5;height:40%" >
 					<jsp:include page="view/navigation.jsp"></jsp:include>
 				</div>
 				<div class="col-md-8">
