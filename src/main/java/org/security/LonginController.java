@@ -17,9 +17,11 @@ public class LonginController {
 	
 	@RequestMapping("/userLogin")
 	public  String   userLogin(Model model){
-		
 		return  "/homePage";
-		
+	}
+	@RequestMapping("/doLogin")
+	public  String   doLogin(){
+		return  "/login";
 	}
 	
 

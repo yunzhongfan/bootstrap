@@ -12,7 +12,7 @@
          <description>Spring MVC Configuration</description>
 
 	<!-- 扫描@Controller注解 -->
-	<context:component-scan base-package="org.cj">
+	<context:component-scan base-package="org.cj,org.security">
 			<context:include-filter type="annotation"
 					expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>

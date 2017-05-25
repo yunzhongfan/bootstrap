@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="/bootstrap/page/css/bootstrap.min.css" rel="stylesheet">
+<link href="/bootstrap/page/css/bootstrap.css" rel="stylesheet">
+<link href="/bootstrap/page/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- 可选的Bootstrap主题文件（一般不使用） -->
+<script src="/bootstrap/page/css/bootstrap-theme.min.css"></script>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="/bootstrap/page/js/jquery-2.0.3.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="/bootstrap/page/js/bootstrap.min.js"></script>
+<link  id ="" rel="stylesheet" type="text/css" href="/bootstrap/page/themes/gray/easyui.css">
+	<link rel="stylesheet" type="text/css" href="/bootstrap/page/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="/bootstrap/page/css/demo.css">
+	<script type="text/javascript" src="/bootstrap/page/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/bootstrap/page/js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="/bootstrap/page/js/denglu.js"></script>
+<style type="text/css">
+html,body{ 
+margin:0px; 
+height:100%; 
+} 
+</style>
+<script>
+function denglu(){
+	  window.location.href='/bootstrap/page/lidan/home.html'; 
+	  
+	  
+}
+
+function slide(d){
+	alert(d);
+}
+
+
+
+
+</script>
+</head>
+<body background="/bootstrap/page/image/home.jpg">
+	<div class="easyui-layout" style="width:100%;height:100%;">
+		<div data-options="region:'north'" style="height:11%">
+					<div style="width:10% ;float:left">
+					<img src="http://www.zzu.edu.cn/images/b_logo.gif" class="img-rounded" style="width: 120px; height: 60px;">
+					</div>
+					<div style="width:80% ;float:right; text-align: right;">
+						<div style="vertical-align:text-bottom;">
+							<span style="font-size: 15px;">星期一 </span> &nbsp;&nbsp;&nbsp;&nbsp; 管理员 &nbsp;&nbsp;&nbsp;&nbsp;<span>李丹&nbsp;&nbsp;&nbsp;&nbsp;</</span>
+							<button type="button" class="btn btn-info">注销</button>
+							<button type="button" class="btn btn-info">返回</button>
+						</div>
+
+			</div>
+		</div>
+		<div data-options="region:'west',split:true" style="width:25%;">
+	<div class="easyui-accordion" style="width:500px;height:300px;">
+		<div title="系统管理"   class="glyphicon glyphicon-asterisk"style="overflow:auto;padding:10px;">
+			<p  onclick="javascript:tiaozhuan(1)">角色管理</p>
+			<p  onclick="javascript:tiaozhuan(2)">角色权限</p>
+			<p  onclick="javascript:tiaozhuan(3)">机构人员维护</p>
+			<p  onclick="javascript:tiaozhuan(4)">机构管理</p>
+		</div>
+		<div title="词条管理" data-options="iconCls:'icon-help'" style="padding:10px;">
+			<p onclick="javascript:tiaozhuan(11)">查询词条</p>
+			<p onclick="javascript:tiaozhuan(12)">编辑词条</p>
+			<p onclick="javascript:tiaozhuan(13)">评分机制</p>
+			<p onclick="javascript:tiaozhuan(14)">审核词条</p>
+		
+		</div>
+		<div title="关键词管理" data-options="iconCls:'icon-search'" style="padding:10px;">
+		
+		</div>
+		<div title="异常处理" data-options="iconCls:'icon-search'" style="padding:10px;">
+		
+		</div>
+	</div>
+		</div>
+		<div data-options="region:'center',iconCls:'icon-ok'">
+		<div id="centerEdit1"></div>
+		<div id="centerEdit"></div>
+	</div>
+	</div>
+</body>
+</html>
