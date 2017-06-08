@@ -2,6 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
     xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:mvc="http://www.springframework.org/schema/mvc"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
                         http://www.springframework.org/schema/beans/spring-beans-4.2.xsd  
@@ -53,7 +54,27 @@
  <!-- 设置静态资源的访问处理方式SpringMVC自己进行处理   方法二-->
  <!-- 对于/根目录下的文件，以及/META-INF/static/ 下的静态文件可以通过${ctx}/resources/XX进行访问 -->
 <mvc:resources mapping="/resources/**" location="/static/" cache-period="31536000"/>
-       <!-- 统一异常处理 -->
+  <!-- 过滤掉对静态资源的拦截 -->  
+   - <mvc:interceptors>
+      <mvc:interceptor>
+         <!--  <mvc:mapping path="/**/*"/>
+          <mvc:exclude-mapping path="/**/fonts/*"/>
+         <mvc:exclude-mapping path="/**/*.css"/>
+         <mvc:exclude-mapping path="/**/*.js"/>
+         <mvc:exclude-mapping path="/**/*.png"/>
+         <mvc:exclude-mapping path="/**/*.gif"/>
+         <mvc:exclude-mapping path="/**/*.jpg"/>
+         <mvc:exclude-mapping path="/**/*.jpeg"/> -->
+       <!--<mvc:exclude-mapping path="/**/*.html"/> -->
+        <!-- 拦截所有URL中包含/user/的请求 -->
+            <mvc:mapping path="/bootstrap"/>
+         <bean class="org.interceptor.interceptor.VisitInterceptor"></bean>
+     </mvc:interceptor>
+ </mvc:interceptors>  -->
+    
+    
+    
+  <!-- 统一异常处理 -->
     <bean id="handlerExceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <!-- 定义的默认错误处理页面 -->
         <property name="defaultErrorView" value="error"></property>
