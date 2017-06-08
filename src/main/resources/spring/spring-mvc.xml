@@ -42,8 +42,17 @@
             value="org.springframework.web.servlet.view.JstlView" />
     </bean>
 
+    <!-- 设置静态资源的访问处理方式   方法一-->
+    <!-- 在springMVC-servlet.xml中配置<mvc:default-servlet-handler />后，
+    会在Spring MVC上下文中定义一个org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler，它会像一个检查员，对进入DispatcherServlet的URL进行筛查，如果发现是静态资源的请求，
+    就将该请求转由Web应用服务器默认的Servlet处理，如果不是静态资源的请求，才由DispatcherServlet继续处理。
+    (一般的web服务器的默认的静态文件存放位置在webapp的根路径下，如果不配置这个的话，在前台页面相对和绝对路径会访问不到静态资源位置，配置上这个前台页面的访问配置静态资源时候用相对路径访问资源)
+    -->
+<!--   <mvc:default-servlet-handler />  -->
 
- 
+ <!-- 设置静态资源的访问处理方式SpringMVC自己进行处理   方法二-->
+ <!-- 对于/根目录下的文件，以及/META-INF/static/ 下的静态文件可以通过${ctx}/resources/XX进行访问 -->
+<mvc:resources mapping="/resources/**" location="/static/" cache-period="31536000"/>
        <!-- 统一异常处理 -->
     <bean id="handlerExceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <!-- 定义的默认错误处理页面 -->
@@ -57,7 +66,5 @@
         </property>
     </bean>
 
-    <!-- 设置静态资源的访问处理方式 -->
-    <!-- mvc默认servlet -->
-    <mvc:default-servlet-handler />
+
  </beans> 

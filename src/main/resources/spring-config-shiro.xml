@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<bean id="springCacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+        <property name="cacheManager" ref="ehcacheManager"/>
+    </bean>
+
+    <!--ehcache-->
+    <bean id="ehcacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+        <property name="configLocation" value="classpath:ehcache-shiro.xml"/>
+    </bean>
+    
+    <!-- 缓存管理器 -->
+    <bean id="cacheManager" class="com.wits.medlink.common.security.shiro.cache.SpringCacheManagerWrapper">
+        <property name="cacheManager" ref="springCacheManager"/>
+    </bean>
+
+    <!-- 凭证匹配器 -->
+    <bean id="credentialsMatcher" class="com.wits.medlink.common.security.shiro.credentials.RetryLimitHashedCredentialsMatcher">
+        <constructor-arg ref="cacheManager"/>
+        <property name="hashAlgorithmName" value="md5"/>
+        <property name="hashIterations" value="2"/>
+        <property name="storedCredentialsHexEncoded" value="true"/>
+    </bean>
+
+    <!-- Realm实现 -->
+    <bean id="userRealm" class="com.daanhealth.medlink.security.shiro.realm.UserRealm">
+        <property name="credentialsMatcher" ref="credentialsMatcher"/>
+        <property name="cachingEnabled" value="false"/>
+    </bean>
+
+    <!-- 会话ID生成器 -->
+    <bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
+
+    <!-- 会话Cookie模板 -->
+    <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="sid"/>
+        <property name="httpOnly" value="true"/>
+        <property name="maxAge" value="-1"/>
+    </bean>
+    
+    <bean id="simpleCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg index="0" value="JSESSIONID_COOKIE"/>
+        <property name="httpOnly" value="true"/>
+    </bean>
+
+    <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="rememberMe"/>
+        <property name="httpOnly" value="true"/>
+        <property name="maxAge" value="2592000"/><!-- 30天 -->
+    </bean>
+
+    <!-- rememberMe管理器 -->
+    <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+        <!-- rememberMe cookie加密的密钥 建议每个项目都不一样 默认AES算法 密钥长度（128 256 512 位）-->
+        <property name="cipherKey"
+                  value="#{T(org.apache.shiro.codec.Base64).decode('4AvVhmFLUs0KTA3Kprsdag==')}"/>
+        <property name="cookie" ref="rememberMeCookie"/>
+    </bean>
+    
+	<!-- <bean id="redisManager" class="com.wits.medlink.shiro.cache.RedisManager"/>
+	
+    <bean id="redisCacheManager" class="com.wits.medlink.shiro.cache.RedisCacheManager">
+        <property name="redisManager" ref="redisManager"/>
+    </bean>
+    
+    <bean id="redisSessionDao" class="com.wits.medlink.shiro.cache.RedisSessionDAO">
+		<property name="redisManager" ref="redisManager"/>
+	</bean> -->
+    
+    <bean id="defaultWebSessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+      <property name="globalSessionTimeout" value="43200000" />  <!-- 1800000 Session有效30分钟 (43200000 Session有效12小时)-->
+<!--       <property name="sessionDAO" ref="redisSessionDao" />  -->
+	</bean>
+
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="userRealm" />
+		<property name="sessionManager" ref="defaultWebSessionManager" />
+ 		<property name="cacheManager" ref="cacheManager"/>
+<!-- 		<property name="cacheManager" ref="redisCacheManager" /> -->
+		<property name="rememberMeManager" ref="rememberMeManager"/>
+	</bean>
+
+    <!-- 基于Form表单的身份验证过滤器 -->
+    <bean id="formAuthenticationFilter" class="com.wits.medlink.common.security.shiro.filter.CustomFormAuthenticationFilter">
+        <property name="usernameParam" value="userName"/>
+        <property name="passwordParam" value="password"/>
+        <property name="captchaParam" value="captcha"/>
+        <property name="rememberMeParam" value="rememberMe"/>
+        <property name="loginUrl" value="/login.action"/>
+        <property name="failureKeyAttribute" value="shiroLoginFailure"/>
+    </bean>
+     
+     
+     <!-- 验证码 
+    <bean id="myCaptchaCacheService" class="com.wits.medlink.common.security.shiro.jcaptcha.CustomCaptchaCacheService"/>
+    
+    <bean id="myCaptchaStore" class="com.wits.medlink.common.security.shiro.jcaptcha.CustomCaptchaStore"/>
+    
+    <bean id="myCaptchaEngine" class="com.wits.medlink.common.security.shiro.jcaptcha.CustomCaptchaEngine"/>
+
+	<bean id="myImageCaptchaService" class="com.wits.medlink.common.security.shiro.jcaptcha.MyManageableImageCaptchaService">
+		<constructor-arg index="0" type="com.octo.captcha.service.captchastore.CaptchaStore" ref="myCaptchaStore"/>
+		<constructor-arg index="1" type="com.octo.captcha.engine.CaptchaEngine" ref="myCaptchaEngine" />
+		<constructor-arg index="2" value="180"/>
+		<constructor-arg index="3" value="100000"/>
+		<constructor-arg index="4" value="75000"/>
+	</bean>
+	
+	<bean id="myJCaptcha" class="com.wits.medlink.common.security.shiro.jcaptcha.JCaptcha">
+	    <property name="captchaService" ref="myImageCaptchaService"/>
+	</bean>
+	
+    <bean id="jCaptchaValidateFilter" class="com.wits.medlink.common.security.shiro.jcaptcha.JCaptchaValidateFilter">
+        <property name="jcaptchaEbabled" value="true"/>
+        <property name="jcaptchaParam" value="jcaptchaCode"/>
+        <property name="failureKeyAttribute" value="shiroLoginFailure"/>
+    </bean>-->
+	
+    <bean id="kickoutSessionControlFilter" class="com.wits.medlink.common.security.shiro.filter.KickoutSessionControlFilter">
+        <property name="cacheManager" ref="cacheManager"/>
+        <property name="sessionManager" ref="defaultWebSessionManager"/>
+        <property name="kickoutAfter" value="false"/>
+        <property name="maxSession" value="1"/>
+        <property name="kickoutUrl" value="/login.action?kickout=1"/>
+    </bean>
+
+	<bean id="sysUserFilter" class="com.wits.medlink.common.security.shiro.filter.CustomUserFilter"/>
+
+    <!-- Shiro的Web过滤器 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="/login.action"/>
+        <property name="successUrl" value="/homePage.action" />
+        <property name="filters">
+            <util:map>
+                <entry key="authc" value-ref="formAuthenticationFilter"/>
+                <entry key="kickout" value-ref="kickoutSessionControlFilter"/>
+                <entry key="sysUser" value-ref="sysUserFilter"/>                  
+                <!-- <entry key="jCaptchaValidate" value-ref="jCaptchaValidateFilter"/>     -->            
+            </util:map>
+        </property>
+        <property name="filterChainDefinitions">
+            <value>
+                /logout = logout
+                /css/**=anon 
+                /DatePicker/**=anon
+                /easyui/**=anon
+                /icons/**=anon
+                /img/**=anon
+                /js/**=anon
+                /scripts/**=anon
+                /themes/**=anon
+                /vendor/**=anon
+                /jcaptcha*=anon
+                /login.action=authc
+                /captcha.action=anon
+                /witsws/**=anon
+                /wistron/**=anon
+                /servlet/**=anon
+                /services/**=anon
+                /authenticated = authc
+                /** = kickout,sysUser
+            </value>
+        </property>
+    </bean>
+
+    <!-- Shiro生命周期处理器-->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+	
+	<aop:config proxy-target-class="true"></aop:config>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+    
+</beans>

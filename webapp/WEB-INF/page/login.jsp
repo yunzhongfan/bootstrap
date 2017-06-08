@@ -52,11 +52,11 @@ padding: 0 0 0 30px;
 </style>
 <script>
   function denglu(){
-      window.location.href='/bootstrap/page/lidan/home.html'; 
+      window.location.href='${ctx}/resources/lidan/home.html'; 
   }
 </script>
 </head>
-<body  class="container-fluid" background="/bootstrap/image/home.jpg">
+<body  class="container-fluid" background="${ctx}/resources/image/home.jpg">
 
     <div class="row"  style="height:35%;" >
                 <div style="font-size: 40px; font-family:sans-serif; font-stretch:extra-expanded;margin-left:15%;margin-top:30px;"  >
@@ -120,6 +120,6 @@ padding: 0 0 0 30px;
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="${ctx}/js/pages/login.js"></script>
+    <script type="text/javascript" src="${ctx}/resources/js/pages/login.js"></script>
 </body>
 </html>

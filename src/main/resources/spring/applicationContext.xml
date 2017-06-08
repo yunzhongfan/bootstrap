@@ -12,7 +12,7 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
 
     <!-- 选择要加载的项目文件 -->  
- <!--    <context:property-placeholder location="classpath:/rock.properties"/> -->
+    <context:property-placeholder location="classpath:/shiro-configer.xml"/> 
      <context:property-placeholder location="classpath:/jdbc.properties"/>
    <!-- 加载系统的配置文件 --> 
      <import resource ="classpath:mybatis.xml"/>
