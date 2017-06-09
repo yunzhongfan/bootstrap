@@ -2,8 +2,10 @@ package org.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.springframework.web.servlet.HandlerInterceptor;
+
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
 
 
 /**
@@ -12,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author nbc
  *
  */
-public class VisitInterceptor implements HandlerInterceptor {
+public class VisitInterceptor extends HandlerInterceptorAdapter {
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object arg2, Exception arg3)
@@ -30,12 +32,16 @@ public class VisitInterceptor implements HandlerInterceptor {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception {
-		Object user = request.getSession().getAttribute("");
-		if (user == null) {
-			System.out.println("直接跳到文本副页面编辑页面");
-			response.sendRedirect("/static/utf8-jsp/index.html");
-			return false;
-		}
-		return true;
+			String  serletPath = 	request.getServletPath();
+			System.out.println("serletPath="+serletPath);
+			String  contextPath = 	request.getContextPath();
+			System.out.println("contextPath="+contextPath);
+			if("/bootstrapu".equals(serletPath)){
+				System.out.println("直接跳到文本副页面编辑页面");
+				response.sendRedirect("/static/utf8-jsp/index.html");
+				return false;
+			}
+			return true;
+			
 	}
 }
