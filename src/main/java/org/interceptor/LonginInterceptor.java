@@ -14,34 +14,36 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  * @author nbc
  *
  */
-public class VisitInterceptor extends HandlerInterceptorAdapter {
+public class LonginInterceptor extends HandlerInterceptorAdapter {
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object arg2, Exception arg3)
 			throws Exception {
-		System.out.println("afterCompletion");
+		System.out.println("LonginInterceptorafterCompletion");
 
 	}
 
 	@Override
 	public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, ModelAndView arg3)
 			throws Exception {
-		System.out.println("postHandle");
+		System.out.println("LonginInterceptorpostHandle");
 
 	}
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception {
 			String  serletPath = 	request.getServletPath();
-			System.out.println("serletPath="+serletPath);
-			String  contextPath = 	request.getContextPath();
-			System.out.println("contextPath="+contextPath);
-			if("/bootstrapu".equals(serletPath)){
-				System.out.println("直接跳到文本副页面编辑页面");
-				response.sendRedirect("/static/utf8-jsp/index.html");
-				return false;
-			}
-			return true;
+			System.out.println("LonginInterceptor--serletPath="+serletPath);
+				if(null!=serletPath&&serletPath.startsWith("/utf8")){
+					 response.sendRedirect("/resources/utf8-jsp/index.html");
+					 return  false;
+				}
+			 if (request.getSession().getAttribute("username") != null) {
+				  response.sendRedirect("/login?next=".concat(request.getRequestURI()));
+		            return true;
+		        }else
+		        return true;
+		    }
 			
-	}
+
 }

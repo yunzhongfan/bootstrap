@@ -34,6 +34,10 @@ public class LonginController {
 	public String doLogin() {
 		return "/login";
 	}
+	@RequestMapping("/loginOut")
+	public String loginOut() {
+		return "/login";
+	}
 
 	
 	/**
