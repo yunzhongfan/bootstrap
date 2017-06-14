@@ -72,14 +72,12 @@ padding: 0 0 0 30px;
                          style="border-radius:4px;" id="exampleInputEmail1" />
                 </div>
                 <div  style="height:20px;margin-top:15px; margin-left:7%;margin-right:3%;">
-                    <label >密&nbsp;&nbsp;&nbsp;&nbsp;码</label> <input type="password"
+                    <label >密&nbsp;码</label> <input type="password"
                         style="border-radius:4px;" id="exampleInputEmail2" width="30%"/>
                 </div>
                 <div  >
                         <div>
-                         <div  style="display:inline-block; width:25%; margin-top:35px; margin-left:23%;margin-right:3%;"><button type="button"  id = "loginButton" class="btn btn-success" >登录</button></div>
-                          &nbsp;&nbsp;&nbsp;
-                          <div style="display:inline-block; width:25%; margin-top:35px; margin-right:3%;"><button type="button" class="btn btn-info">注册</button></div>
+                         <div  style="display:inline-block; width:100%; margin-top:35px; margin-left:23%;margin-right:3%;"><button type="button"  id = "loginButton" class="btn btn-success" >登录</button> &nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-info">注册</button></div>
                         </div>
                   <div style="float:right;margin-right:10px;margin-top:8px; margin-bottom:15px;text-decoration-line:underline;font-style:italic "><a href="#">忘记密码</a></div>
                 </div>
