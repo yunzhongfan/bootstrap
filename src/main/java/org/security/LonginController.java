@@ -48,7 +48,7 @@ public class LonginController {
 	 * @param password
 	 * @return
 	 */
-	@RequestMapping("")
+	@RequestMapping("/userLogin")
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response, String username,
 			String password) {
 		UsernamePasswordToken token = new UsernamePasswordToken(username, password);

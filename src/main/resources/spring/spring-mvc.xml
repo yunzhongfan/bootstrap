@@ -67,6 +67,16 @@
           <!-- 过滤掉退出的拦截 -->
          <bean class="org.interceptor.LonginInterceptor"></bean>
      </mvc:interceptor>
+     <!-- 日志管理 -->
+     <mvc:interceptor>
+       <!-- 拦截所有URL中包含/user/的请求 -->
+          <mvc:mapping path="/**"/> 
+         <!-- 过滤掉对静态资源的拦截 -->
+         <mvc:exclude-mapping path="/resources/**"/>
+        <mvc:exclude-mapping path="/loginOut"/>
+          <!-- 过滤掉退出的拦截 -->
+         <bean class="org.interceptor.LogInterceptor"></bean>
+     </mvc:interceptor>
  </mvc:interceptors>  
     
     
