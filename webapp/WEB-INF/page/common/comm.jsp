@@ -21,6 +21,14 @@
 <script src="${ctx}/resources/js/jquery/jquery.easyui.min.js"></script>
 <script src="${ctx}/resources/js/jquery/jquery.form.js"></script>
 
+<!-- 加载bootstrapTable的相关引用-->
+
+<link  id ="" rel="stylesheet" type="text/css" href="${ctx}/resources/css/bootstrap-table/1.11.1/bootstrap-table.min.css">
+<script src="${ctx}/resources/js/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+<script src="${ctx}/resources/js/bootstrap-table/1.11.1/bootstrap-table-zh-CN.js"></script>
+<script src="${ctx}/resources/js/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+
+
 
 
 

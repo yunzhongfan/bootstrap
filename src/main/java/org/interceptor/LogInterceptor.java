@@ -22,8 +22,8 @@ public class LogInterceptor extends HandlerInterceptorAdapter{
 	
 	private static final Logger loger = Logger.getLogger(LogInterceptor.class);
 	
-	
-	/*public boolean preHandle(HttpServletRequest request,  
+/*	
+	public boolean preHandle(HttpServletRequest request,  
 	         HttpServletResponse response, Object handler) throws Exception {  
 		 	loger.info("" + request.getRequestURI());  
 	      if(!HandlerMethod.class.isAssignableFrom(handler.getClass())){  
@@ -62,8 +62,8 @@ public class LogInterceptor extends HandlerInterceptorAdapter{
 	      if(userId!=null){  
 	         UserLoginHolder.handleCurrentUser(userId);  
 	      } 
-	    //  return result;
+	      return result;
 		
-	   }  */
+	   } */
 
 }
