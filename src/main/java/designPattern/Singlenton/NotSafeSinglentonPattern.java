@@ -1,4 +1,4 @@
-package designPattern;
+package designPattern.Singlenton;
 
 /**
  * 懒汉单例模式,if(notSafeSinglentonPattern==null)容易出现线程不安全的问题

@@ -1,4 +1,4 @@
-package designPattern;
+package designPattern.Singlenton;
 
 /**
  * 
@@ -24,19 +24,19 @@ public class DoubleCheckedLockingSingletton {
 	 * 
 	 * volatile 的功能: 1. 避免编译器将变量缓存在寄存器里 2. 避免编译器调整代码执行的顺序
 	 */
-private volatile static NotSafeSinglentonPattern notSafeSinglentonPattern = null;
+private volatile static DoubleCheckedLockingSingletton doubleCheckedLockingSingletton = null;
 
 
-	public static synchronized NotSafeSinglentonPattern getNotSafeSinglentonPattern() {
+	public static synchronized DoubleCheckedLockingSingletton getDoubleCheckedLockingSingletton() {
 		
-			if (notSafeSinglentonPattern == null) {
+			if (doubleCheckedLockingSingletton == null) {
 				synchronized (DoubleCheckedLockingSingletton.class) {
-					if(notSafeSinglentonPattern == null){
-						notSafeSinglentonPattern = new NotSafeSinglentonPattern();
+					if(doubleCheckedLockingSingletton == null){
+						doubleCheckedLockingSingletton = new DoubleCheckedLockingSingletton();
 					}
 				}
 			}
-		return notSafeSinglentonPattern;
+		return doubleCheckedLockingSingletton;
 	}
 	
 	public static void doSomething() {

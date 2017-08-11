@@ -1,4 +1,4 @@
-package designPattern;
+package designPattern.Singlenton;
 
 public class SinglentonPatternTest {
 	
@@ -22,5 +22,15 @@ public class SinglentonPatternTest {
 		 * 测试多例模式
 		 */
 		 MorelentonPattern.getDevelopSinglentonPattern().doSomething();
+		 
+		 /**
+		  *内部类的单例模式
+		  */
+		 LazyInitializationHolderSinglentonPatter.getInstance().dosomething();
+		 
+		 /**
+		  * 双重检查锁的单例模式
+		  */
+		 DoubleCheckedLockingSingletton.getDoubleCheckedLockingSingletton().doSomething();
 	}
 }

@@ -1,4 +1,4 @@
-package designPattern;
+package designPattern.Singlenton;
 
 import java.util.ArrayList;
 import java.util.List;

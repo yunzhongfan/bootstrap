@@ -1,4 +1,4 @@
-package designPattern;
+package designPattern.Singlenton;
 
 
 /**
@@ -25,7 +25,7 @@ public class SingletonPattern {
 
 	
 	public  static void doSomething(){
-		System.out.println("I'm doSomething method!");
+		System.out.println(SingletonPattern.class.getName()+"I'm doSomething method!");
 		System.out.println("如读取配置、 产生其他依赖对象,单例模式可以避免对资源的多重占用， 例如一个写文件动作， 由于只有一个实例存在"
 +"内存中， 避免对同一个资源文件的同时写操作");
 	}

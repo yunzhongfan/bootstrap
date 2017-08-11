@@ -1,4 +1,4 @@
-package designPattern;
+package designPattern.Singlenton;
 
 /**
  * 内部类静态持有者模式，实现的单例模式
@@ -18,5 +18,8 @@ public class LazyInitializationHolderSinglentonPatter {
 
      public static LazyInitializationHolderSinglentonPatter getInstance() {  
              return SingletonHolder.INSTANCE;  
-     }  
+     } 
+    public void dosomething(){
+    	System.out.println(LazyInitializationHolderSinglentonPatter.class.getName()+"dosomeThing!");
+    }
 }
