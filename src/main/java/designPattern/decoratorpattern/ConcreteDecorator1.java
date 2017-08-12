@@ -1,6 +1,8 @@
 package designPattern.decoratorpattern;
 
 public class ConcreteDecorator1 extends Decorator {
+	
+	
 	//定义被修饰者
 	public ConcreteDecorator1(Component component) {
 		super(component);
