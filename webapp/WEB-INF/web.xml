@@ -65,9 +65,21 @@
 
     <servlet-mapping>
         <servlet-name>springMVC</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>*.do</url-pattern>
     </servlet-mapping>
-
+    
+    <!-- Servlet 接口练习 -->
+  <!--  <servlet>
+      <servlet-name>springMVC</servlet-name>
+        <servlet-class>servletTest.ServletTest</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>springMVC</servlet-name>
+        <url-pattern>/servlet/*</url-pattern>
+    </servlet-mapping>
+ -->
 
 <!-- 集成shiro安全框架 -->
 <!-- <filter>  
